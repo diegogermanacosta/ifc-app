@@ -1,9 +1,7 @@
-# Hello world IFC.js WIV Using Vite React-TS
+# Quick setup
 
-Currently IFC.js does not have a Vite React example (an alternative to Create React App). So, I made one based on the [hello world repository](https://github.com/IFCjs/hello-world).
+Download this project or clone the repository.
 
-## Quick setup
+Install the dependencies using `npm install` and build all the examples with `npm run build`.
 
-First, download this project or clone the repository and install the dependencies with `git clone https://github.com/IFCjs/hello-world`. You can then install the dependencies using `npm install` and build all the examples with `npm run build`.
-
-You can then execute the examples serving them locally with `git run preview`.
+You can then execute the examples serving them locally with `npm run dev`.
