@@ -22,8 +22,6 @@ const IfcContainer = () => {
   const loadModel = async (viewer: IfcViewerAPI, url: string) => {
     await viewer.IFC.setWasmPath('./')
     const model = await viewer.IFC.loadIfcUrl(url)
-    if(!model)
-      model = await viewer.IFC.loadIfcUrl("1.ifc");
     viewer.shadowDropper.renderShadow(model.modelID)
     viewer.clipper.active = true
     setInitialViewer(null)

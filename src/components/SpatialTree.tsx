@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { IfcViewerAPI } from 'web-ifc-viewer'
 
 interface Node {
   expressID: number;
@@ -73,6 +74,7 @@ function LeafNode({ node,modelID}: { node: Node, modelID: number }) {
 
 // Componente principal SpatialTree
 function SpatialTree({ createTree, modelID }: SpatialTreeProps) {
+  
   const rootNode = createTree();
 
   return (
