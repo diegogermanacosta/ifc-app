@@ -7,37 +7,15 @@ import Properties from './Properties'
 import SpatialTree from './SpatialTree'
 
 function LeftFlexLayout() {
-    return <div>
-        aca va el spatial Tree
-    </div>//<SpatialTree/>;
-}
-
-function RightTopFlexLayout() {
-    return (
-        <Panel
-            title="Viewer"
-            sx={{
-                flexBasis: 'auto',
-            }}
-        >
-            <IfcContainer />
-        </Panel>
-        
-    );
-}
-
-function RightBottomFlexLayout() {
-    return (
-        <Panel
-            title="Properties"
-            sx={{
-                flexBasis: '33%',
-            }}
-        >
-            <Properties />
-        </Panel>
-    );
-}
+    return <Panel
+                title="Properties"
+                sx={{
+                    flexBasis: '33%',
+                }}
+            >
+                <Properties />
+            </Panel>
+    }
 
 function RightFlexLayout() {
     return (
@@ -45,11 +23,17 @@ function RightFlexLayout() {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                flexBasis: '66.67%',
+                flexBasis: '66%',
             }}
         >
-            <RightTopFlexLayout />
-            <RightBottomFlexLayout />
+            <Panel
+                title="Viewer"
+                sx={{
+                    flexBasis: 'auto',
+                }}
+            >
+                <IfcContainer />
+            </Panel>
         </Box>
     );
 }
