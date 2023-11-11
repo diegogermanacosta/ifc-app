@@ -1,14 +1,13 @@
-import { useRef, useState, useLayoutEffect, useEffect, KeyboardEvent } from 'react'
+import { useRef, useState, useLayoutEffect, useEffect, type KeyboardEvent } from 'react'
 import { IfcViewerAPI } from 'web-ifc-viewer'
 import { Color } from 'three'
-import SpatialTree from './SpatialTree';
 
-const IfcContainer = () => {
+const IfcContainer = (): JSX.Element => {
   const ifcContainer = useRef<HTMLDivElement>(null)
   const [initialViewer, setInitialViewer] = useState<IfcViewerAPI | null>(null)
   const [viewer, setViewer] = useState<IfcViewerAPI | null>(null)
 
-  const loadIfc = async (container: HTMLDivElement) => {
+  const loadIfc = async (container: HTMLDivElement): Promise<IfcViewerAPI> => {
     const ifcViewer = new IfcViewerAPI({ container, backgroundColor: new Color(0xffffff) })
     ifcViewer.axes.setAxes()
     ifcViewer.grid.setGrid()
@@ -19,7 +18,7 @@ const IfcContainer = () => {
     return ifcViewer
   }
 
-  const loadModel = async (viewer: IfcViewerAPI, url: string) => {
+  const loadModel = async (viewer: IfcViewerAPI, url: string): Promise<void> => {
     await viewer.IFC.setWasmPath('./')
     const model = await viewer.IFC.loadIfcUrl(url)
     viewer.shadowDropper.renderShadow(model.modelID)
@@ -27,26 +26,26 @@ const IfcContainer = () => {
     setInitialViewer(null)
   }
 
-  const ifcCleanup = async (ifcViewer: IfcViewerAPI) => {
+  const ifcCleanup = async (ifcViewer: IfcViewerAPI): Promise<void> => {
     await ifcViewer.dispose()
   }
 
-  const handleOnDoubleClick = () => {
-    if (!viewer) return
+  const handleOnDoubleClick = (): void => {
+    if (viewer == null) return
     viewer.IFC.selector.pickIfcItem(true)
   }
 
-  const handleMouseMove = () => {
-    if (!viewer) return
+  const handleMouseMove = (): void => {
+    if (viewer == null) return
     viewer.IFC.selector.prePickIfcItem()
   }
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (!viewer) return
-    if(event.code === 'KeyP') {
+    if (viewer == null) return
+    if (event.code === 'KeyP') {
       viewer.clipper.createPlane()
     }
-    if(event.code === 'KeyO') {
+    if (event.code === 'KeyO') {
       viewer.clipper.deletePlane()
     }
   }
@@ -60,22 +59,22 @@ const IfcContainer = () => {
       setViewer(ifcViewer)
     }
 
-    if (ifcContainer.current) {
+    if (ifcContainer.current != null) {
       initialize(ifcContainer.current)
     }
 
     return () => {
-      if (ifcViewer) {
+      if (ifcViewer != null) {
         ifcCleanup(ifcViewer)
       }
     }
   }, [])
 
   useEffect(() => {
-    if (initialViewer) {
-      let params = new URL(document.location.href).searchParams;
-      const urlFile =  params.get("url");
-      if(!urlFile) return;
+    if (initialViewer != null) {
+      const params = new URL(document.location.href).searchParams
+      const urlFile = params.get('url')
+      if (urlFile == null) return
       loadModel(initialViewer, urlFile)
     }
   }, [initialViewer])
@@ -86,7 +85,7 @@ const IfcContainer = () => {
       tabIndex={0}
       onDoubleClick={handleOnDoubleClick}
       onMouseMove={handleMouseMove}
-      onKeyDown={event => handleKeyDown(event)}
+      onKeyDown={event => { handleKeyDown(event) }}
     />
   )
 }

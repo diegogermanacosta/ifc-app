@@ -1,26 +1,26 @@
-import React from 'react';
-import { SxProps } from '@mui/system';
-import Card from '@mui/material/Card';
-import theme from '../theme/theme';
-import CardHeader from '@mui/material/CardHeader';
+import React from 'react'
+import { type SxProps } from '@mui/system'
+import Card from '@mui/material/Card'
+import theme from '../theme/theme'
+import CardHeader from '@mui/material/CardHeader'
 
-type PanelProps = {
-    title?: string;
-    action?: React.ReactNode;
-    children: React.ReactNode;
-    sx: SxProps;
-};
-export default function Panel({ title, children, action, sx = {} }: PanelProps) {
-    return (
+interface PanelProps {
+  title?: string
+  action?: React.ReactNode
+  children: React.ReactNode
+  sx: SxProps
+}
+export default function Panel ({ title, children, action, sx = {} }: PanelProps) {
+  return (
         <Card
             sx={{
-                margin: '10px',
-                // @ts-ignore
-                boxShadow: theme.customShadows.card,
-                borderRadius: Number(theme.shape.borderRadius) * 2,
-                // bgcolor: 'background.neutral',
+              margin: '10px',
+              // @ts-expect-error
+              boxShadow: theme.customShadows.card,
+              borderRadius: Number(theme.shape.borderRadius) * 2,
+              // bgcolor: 'background.neutral',
 
-                ...sx,
+              ...sx
             }}
             // elevation={24}
         >
@@ -28,5 +28,5 @@ export default function Panel({ title, children, action, sx = {} }: PanelProps) 
 
             {children}
         </Card>
-    );
+  )
 }
