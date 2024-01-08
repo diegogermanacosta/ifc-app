@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Properties = () => {
+const Properties = (): JSX.Element => {
   return (
     <div>properties</div>
   )

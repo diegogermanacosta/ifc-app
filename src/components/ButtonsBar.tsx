@@ -1,12 +1,16 @@
 import React from 'react'
 import Button from './Button'
-const ButtonsBar = () => {
+const ButtonsBar = (): JSX.Element => {
   return (
-    <Button
+    <>
+      <Button
         title="regla"
-        action="LoL"
-    >
-    </Button>
+        action="LoL" />
+      <Button
+        title={'Corte'}
+        action={undefined}
+      />
+    </>
   )
 }
 

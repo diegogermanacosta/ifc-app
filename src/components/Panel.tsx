@@ -10,7 +10,7 @@ interface PanelProps {
   children: React.ReactNode
   sx: SxProps
 }
-export default function Panel ({ title, children, action, sx = {} }: PanelProps) {
+export default function Panel ({ title, children, action, sx = {} }: PanelProps): JSX.Element {
   return (
         <Card
             sx={{

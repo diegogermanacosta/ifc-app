@@ -1,12 +1,12 @@
 import React from 'react'
 
-type ButtonProps = {
-    title: string;
-    action: any;
-    children?: React.ReactNode;
-};
+interface ButtonProps {
+  title: string
+  action: any
+  children?: React.ReactNode
+}
 
-const Button = ({title, action}:ButtonProps) => {
+const Button = ({ title, action }: ButtonProps): JSX.Element => {
   return (
     <button>{title}</button>
   )

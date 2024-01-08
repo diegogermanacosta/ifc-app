@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable react/react-in-jsx-scope */
 import { useRef, useState, useLayoutEffect, useEffect, type KeyboardEvent } from 'react'
 import { IfcViewerAPI } from 'web-ifc-viewer'
 import { Color } from 'three'
@@ -40,7 +42,7 @@ const IfcContainer = (): JSX.Element => {
     viewer.IFC.selector.prePickIfcItem()
   }
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>): void => {
     if (viewer == null) return
     if (event.code === 'KeyP') {
       viewer.clipper.createPlane()
@@ -53,7 +55,7 @@ const IfcContainer = (): JSX.Element => {
   useLayoutEffect(() => {
     let ifcViewer: IfcViewerAPI
 
-    const initialize = async (ifcContainer: HTMLDivElement) => {
+    const initialize = async (ifcContainer: HTMLDivElement): Promise<void> => {
       ifcViewer = await loadIfc(ifcContainer)
       setInitialViewer(ifcViewer)
       setViewer(ifcViewer)
@@ -86,7 +88,8 @@ const IfcContainer = (): JSX.Element => {
       onDoubleClick={handleOnDoubleClick}
       onMouseMove={handleMouseMove}
       onKeyDown={event => { handleKeyDown(event) }}
-    />
+    >
+    </div>
   )
 }
 

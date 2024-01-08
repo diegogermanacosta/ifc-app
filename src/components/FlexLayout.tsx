@@ -1,55 +1,65 @@
-import React from 'react';
+import React from 'react'
 
-import Box from '@mui/material/Box';
-import Panel from './Panel';
-import IfcContainer from './IfcContainer';
+import Box from '@mui/material/Box'
+import Panel from './Panel'
+import IfcContainer from './IfcContainer'
 import Properties from './Properties'
-import SpatialTree from './SpatialTree'
+import ButtonsBar from './ButtonsBar'
 
-function LeftFlexLayout() {
-    return <Panel
+const LeftFlexLayout = (): JSX.Element => {
+  return <Panel
                 title="Properties"
                 sx={{
-                    flexBasis: '33%',
+                  flex: '0 0 20%'
                 }}
             >
                 <Properties />
             </Panel>
-    }
+}
 
-function RightFlexLayout() {
-    return (
+const RightFlexLayout = (): JSX.Element => {
+  return (
         <Box
             sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                flexBasis: '66%',
+              display: 'flex',
+              flexDirection: 'column',
+              flexGrow: '1'
             }}
         >
             <Panel
                 title="Viewer"
                 sx={{
-                    flexBasis: 'auto',
+                  flex: '1'
                 }}
             >
                 <IfcContainer />
             </Panel>
+            <Panel
+                sx={{
+                  flex: '0.15'
+                }}
+            >
+                <ButtonsBar />
+            </Panel>
         </Box>
-    );
+  )
 }
-export default function FlexLayout() {
-    return (
+const FlexLayout = (): JSX.Element => {
+  return (
         <Box
             sx={{
-                height: '100vh',
-                bgcolor: 'background.default',
-                boxSizing: 'border-box',
-                p: '20px',
-                display: 'flex',
+              height: '100vh',
+              width: '100vw',
+              bgcolor: 'grey',
+              boxSizing: 'border-box',
+              p: '20px',
+              display: 'flex'
             }}
         >
             <LeftFlexLayout />
             <RightFlexLayout />
         </Box>
-    );
+  )
 }
+
+export default FlexLayout
