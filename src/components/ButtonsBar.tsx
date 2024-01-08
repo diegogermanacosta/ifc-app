@@ -1,14 +1,17 @@
 import React from 'react'
 import Button from './Button'
 const ButtonsBar = (): JSX.Element => {
+  function lol (): void {
+    console.log('LOL')
+  }
   return (
     <>
       <Button
-        title="regla"
-        action="LoL" />
+        title="Regla"
+        action={lol} />
       <Button
         title={'Corte'}
-        action={undefined}
+        action={lol}
       />
     </>
   )

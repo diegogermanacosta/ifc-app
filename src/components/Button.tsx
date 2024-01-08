@@ -8,7 +8,9 @@ interface ButtonProps {
 
 const Button = ({ title, action }: ButtonProps): JSX.Element => {
   return (
-    <button>{title}</button>
+    <button onClick={action}>
+      {title}
+    </button>
   )
 }
 

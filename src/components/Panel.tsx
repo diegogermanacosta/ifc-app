@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import { type SxProps } from '@mui/system'
 import Card from '@mui/material/Card'
